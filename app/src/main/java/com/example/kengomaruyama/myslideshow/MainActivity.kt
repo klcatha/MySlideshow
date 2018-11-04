@@ -54,6 +54,14 @@ class MainActivity : AppCompatActivity() {
 
         player = MediaPlayer.create(this, R.raw.getdown)
         player.isLooping = true
+
+        when (isSlideshow) {
+            true -> player.start()
+            false -> player.apply {
+                pause()
+                seekTo(0)
+            }
+        }
     }
 
     private fun movePosition(move: Int){
