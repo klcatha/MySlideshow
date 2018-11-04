@@ -1,5 +1,6 @@
 package com.example.kengomaruyama.myslideshow
 
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var position = 0
     private var isSlideshow = false
     private val handler = Handler()
+    private lateinit var player: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         slideshowButton.setOnClickListener {
             isSlideshow = !isSlideshow
         }
+
+        player = MediaPlayer.create(this, R.raw.getdown)
+        player.isLooping = true
     }
 
     private fun movePosition(move: Int){
