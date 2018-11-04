@@ -2,6 +2,7 @@ package com.example.kengomaruyama.myslideshow
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.BounceInterpolator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,8 +13,9 @@ class MainActivity : AppCompatActivity() {
 
         imageView.setOnClickListener {
             it.animate().apply {
-                duration = 3000L
-                rotation(360.0f * 5.0f)
+                duration = 1000L
+                interpolator = BounceInterpolator()
+                y(it.y + 100.0f)
             }
         }
     }
