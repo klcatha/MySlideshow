@@ -26,8 +26,16 @@ class MainActivity : AppCompatActivity() {
         }
         imageSwitcher.setImageResource(resource[0])
 
-        prevButton.setOnClickListener { movePosition(-1) }
-        nextButton.setOnClickListener { movePosition(1) }
+        prevButton.setOnClickListener {
+            imageSwitcher.setInAnimation(this, android.R.anim.fade_in)
+            imageSwitcher.setOutAnimation(this, android.R.anim.fade_out)
+            movePosition(-1)
+        }
+        nextButton.setOnClickListener {
+            imageSwitcher.setInAnimation(this, android.R.anim.slide_in_left)
+            imageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right)
+            movePosition(1) 
+        }
     }
 
     private fun movePosition(move: Int){
