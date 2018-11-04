@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         imageView.setOnClickListener {
             it.animate().apply {
-                duration = 1000L
+                duration = 1000L    //ミリ秒
                 interpolator = BounceInterpolator()
                 y(it.y + 100.0f)
             }
