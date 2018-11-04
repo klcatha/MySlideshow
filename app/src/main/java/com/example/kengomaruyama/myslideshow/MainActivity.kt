@@ -2,9 +2,11 @@ package com.example.kengomaruyama.myslideshow
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.animation.BounceInterpolator
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
     private val resource = listOf(
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     )
 
     private var position = 0
+    private var isSlideshow = false
+    private val handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +38,16 @@ class MainActivity : AppCompatActivity() {
         nextButton.setOnClickListener {
             imageSwitcher.setInAnimation(this, android.R.anim.slide_in_left)
             imageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right)
-            movePosition(1) 
+            movePosition(1)
+        }
+
+        timer(period = 5000) {
+            handler.post {
+                if (isSlideshow) movePosition(1)
+            }
+        }
+        slideshowButton.setOnClickListener {
+            isSlideshow = !isSlideshow
         }
     }
 
